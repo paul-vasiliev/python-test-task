@@ -27,7 +27,7 @@ def get_line(num_line, half_n, half_width, half_height):
         half_line += Settings.canvas_symbol * half_width
     else:
         half_line += Settings.flag_border_symbol * half_width
-    line = half_line + half_line[::-1] + '\n'
+    line = half_line + half_line[::-1] + '\n'  # get the second half as a mirror image of the first
     return line
 
 
