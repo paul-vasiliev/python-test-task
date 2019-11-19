@@ -1,17 +1,18 @@
 import unittest
-from flag import ArgumentError, verification, flag
+from argparse import ArgumentError
+from flag import flag
 
 
 class ExceptionTestCase(unittest.TestCase):
 
     def test_invalid_type(self):
-        self.assertRaises(ArgumentError, verification, 'abc')
+        self.assertRaises(ArgumentError, flag, 'abc')
 
     def test_negative_number(self):
-        self.assertRaises(ArgumentError, verification, -1)
+        self.assertRaises(ArgumentError, flag, -1)
 
     def test_odd_number(self):
-        self.assertRaises(ArgumentError, verification, 3)
+        self.assertRaises(ArgumentError, flag, 3)
 
 
 class FlagsTestCase(unittest.TestCase):
