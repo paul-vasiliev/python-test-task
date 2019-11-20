@@ -10,18 +10,13 @@ class Settings:
 
 def verification(func):
     def wrapper(n):
-        try:
-            if not isinstance(n, int):
-                raise argparse.ArgumentError(None, f'{type(n)} "{n}" has an invalid data type.')
-            if n < 0:
-                raise argparse.ArgumentError(None, f'{type(n)} "{n}" must be greater than 0.')
-            if n % 2 != 0:
-                raise argparse.ArgumentError(None, f'{type(n)} "{n}" should be even.')
-        except argparse.ArgumentError as exc:
-            print(f'{exc}\n"N" must be a valid even number.')
-            raise exc
-        else:
-            return func(n)
+        if not isinstance(n, int):
+            raise argparse.ArgumentError(None, f'{type(n)} "{n}" has an invalid data type.')
+        if n < 0:
+            raise argparse.ArgumentError(None, f'{type(n)} "{n}" must be greater than 0.')
+        if n % 2 != 0:
+            raise argparse.ArgumentError(None, f'{type(n)} "{n}" should be even.')
+        return func(n)
 
     return wrapper
 
@@ -42,6 +37,6 @@ def flag(n):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Takes the value n')
-    parser.add_argument('n', help='n must be a valid even number.', default=0)
+    parser.add_argument('n', type=int, help='n must be a valid even number.', default=0)
     n = parser.parse_args().n
     print(flag(n))
